@@ -1,0 +1,66 @@
+name: Drishti AI Backend Tests
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    services:
+      mongodb:
+        image: mongo:7.0
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd "mongosh --eval 'db.adminCommand({ping: 1})'"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r backend/requirements.txt
+        pip install pytest pytest-asyncio pytest-cov
+    
+    - name: Create model directories
+      run: |
+        mkdir -p backend/models/llm
+        mkdir -p backend/models/whisper
+        mkdir -p backend/models/tts
+    
+    - name: Run unit tests
+      run: |
+        pytest backend/tests/unit -v --cov=backend --cov-report=xml
+    
+    - name: Run integration tests
+      run: |
+        pytest backend/tests/integration -v --cov=backend --cov-append --cov-report=xml
+      env:
+        MONGO_URI: mongodb://localhost:27017
+    
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v4
+      with:
+        file: ./coverage.xml
+        flags: unittests
+        name: codecov-umbrella
+        fail_ci_if_error: false
+    
+    - name: Test Summary
+      run: |
+        echo "## Test Results" >> $GITHUB_STEP_SUMMARY
+        echo "✅ All tests passed!" >> $GITHUB_STEP_SUMMARY

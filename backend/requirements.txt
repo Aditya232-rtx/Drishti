@@ -1,0 +1,38 @@
+# Core Web Framework
+fastapi==0.115.0
+uvicorn[standard]==0.32.0
+pydantic==2.10.0
+pydantic-settings==2.6.0
+python-dotenv==1.0.1
+python-multipart==0.0.18
+
+# Database
+motor==3.6.0
+pymongo==4.9.1
+
+# Memory Engine
+memori @ git+https://github.com/MemoriLabs/Memori.git
+
+# AI/ML Models
+faster-whisper==1.1.0
+torch==2.5.1
+transformers==4.47.1
+sentencepiece==0.2.0
+huggingface-hub==0.27.0
+numpy==2.2.0
+accelerate==1.2.1
+
+# Audio Processing
+soundfile==0.12.1
+librosa==0.10.2.post1
+
+# File Parsing
+pypdf==5.1.0
+python-docx==1.1.2
+
+# Utilities
+langdetect==1.0.9
+httpx==0.28.1
+
+# Additional Dependencies
+sqlalchemy==2.0.36

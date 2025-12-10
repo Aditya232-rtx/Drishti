@@ -1,0 +1,34 @@
+# Virtual Environment
+drishti-env/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Model files (too large for git)
+backend/models/llm/
+backend/models/whisper/
+backend/models/tts/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temp files
+start
