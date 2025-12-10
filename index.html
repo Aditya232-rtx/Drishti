@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drishtikosh - Upload & Chat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Martel+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Left Sidebar -->
+        <aside class="sidebar">
+            <!-- Logo -->
+            <div class="sidebar-header">
+                <img src="../assets/Dristikosh_logo.png" alt="Drishtikosh Logo" class="sidebar-logo">
+            </div>
+
+            <!-- Past Chats Section -->
+            <div class="past-chats-section">
+                <h2 class="past-chats-heading" data-translate="past-chats-heading">Past Chats</h2>
+                <div class="chats-list" id="chatsList">
+                    <!-- Empty state for now -->
+                    <p class="empty-state" data-translate="empty-state">No chats yet. Start a new conversation!</p>
+                    <!-- Future: Chat items will be inserted here by JavaScript -->
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-area">
+            <!-- Language Selector -->
+            <div class="language-selector-container">
+                <button class="language-btn" id="languageBtn" aria-label="Select language" title="Change language">
+                    <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path
+                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                        </path>
+                    </svg>
+                    <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7 10l5 5 5-5z" />
+                    </svg>
+                </button>
+                <div class="language-dropdown" id="languageDropdown">
+                    <!-- Language options will be populated dynamically by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Header with Logo (for mobile) -->
+            <header class="mobile-header">
+                <img src="../assets/Dristikosh_logo.png" alt="Drishtikosh Logo" class="mobile-logo">
+            </header>
+
+            <!-- Content Container -->
+            <div class="content-container">
+                <!-- Welcome Message -->
+                <div class="welcome-section">
+                    <h1 class="welcome-heading" data-translate="welcome-heading">What's on your mind today?</h1>
+                    <p class="welcome-subtext" data-translate="welcome-subtext">Upload content or ask a question to get
+                        started</p>
+                </div>
+
+                <!-- Input Section -->
+                <div class="input-section">
+                    <!-- File Upload Button -->
+                    <button class="upload-btn" id="uploadBtn" aria-label="Upload file" title="Upload file">
+                        <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                    </button>
+
+                    <!-- Hidden File Input -->
+                    <input type="file" id="fileInput" class="file-input"
+                        accept="image/*,application/pdf,.doc,.docx,.txt" aria-label="File upload input">
+
+                    <!-- Selected File Display -->
+                    <div class="selected-file" id="selectedFile" style="display: none;">
+                        <span class="file-name" id="fileName"></span>
+                        <button class="remove-file-btn" id="removeFileBtn" aria-label="Remove file">×</button>
+                    </div>
+
+                    <!-- Prompt Input Container -->
+                    <div class="prompt-container">
+                        <textarea class="prompt-input" id="promptInput" placeholder="Ask anything..."
+                            data-translate-placeholder="prompt-placeholder" aria-label="Enter your question or prompt"
+                            rows="1"></textarea>
+
+                        <!-- Microphone Button for Voice Input -->
+                        <button class="mic-btn" id="micBtn" aria-label="Voice input" title="Click to record voice">
+                            <svg class="mic-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z" />
+                                <path
+                                    d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z" />
+                            </svg>
+                            <svg class="mic-recording-icon" viewBox="0 0 24 24" fill="currentColor"
+                                style="display: none;">
+                                <circle cx="12" cy="12" r="8" />
+                            </svg>
+                        </button>
+
+                        <button class="submit-btn" id="submitBtn" aria-label="Submit">
+                            <svg class="submit-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/JS/config.js"></script>
+    <script src="/JS/api.js"></script>
+    <script src="/JS/translate.js"></script>
+    <script src="/JS/voice-input.js"></script>
+    <script src="/script.js"></script>
+</body>
+
+</html>
